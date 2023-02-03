@@ -2,31 +2,51 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\OfferRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
+#[ApiResource(
+    operations: [
+        new Get(
+            normalizationContext: ['groups' => ['read:offer']],
+        )
+    ,
+     new GetCollection(
+         normalizationContext: ['groups' => ['read:offers']]
+     )]
+)]
 class Offer
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read:offer', 'read:offers'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read:offer', 'read:offers'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['read:offer', 'read:offers'])]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Groups(['read:offer', 'read:offers'])]
     private ?int $salary = null;
 
     #[ORM\Column(length: 3)]
+    #[Groups(['read:offer', 'read:offers'])]
     private ?string $contractType = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read:offer', 'read:offers'])]
     private ?string $slug = null;
 
     #[ORM\Column]
@@ -36,9 +56,11 @@ class Offer
     private ?bool $published = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['read:offer', 'read:offers'])]
     private ?\DateTimeImmutable $publishedAt = null;
 
     #[ORM\Column]
+    #[Groups(['read:offer', 'read:offers'])]
     private ?int $positions = null;
 
     #[ORM\Column(nullable: true)]
@@ -47,6 +69,12 @@ class Offer
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function __construct()
+    {
+        $this->publishedAt = new \DateTimeImmutable();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getTitle(): ?string
