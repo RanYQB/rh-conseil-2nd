@@ -66,6 +66,10 @@ class Offer
     #[ORM\Column(nullable: true)]
     private ?bool $closed = null;
 
+    #[ORM\ManyToOne(inversedBy: 'offers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?City $city = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -193,6 +197,18 @@ class Offer
     public function setClosed(?bool $closed): self
     {
         $this->closed = $closed;
+
+        return $this;
+    }
+
+    public function getCity(): ?City
+    {
+        return $this->city;
+    }
+
+    public function setCity(?City $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
