@@ -6,6 +6,7 @@
 
 
 <div class="">
-    <div {{ react_component('HomeContent', {}) }}></div>
+    <div {{ react_component('HomeNav', { 'user' : app.user }) }}></div>
+    <div {{ react_component('HomeForm', {}) }}></div>
 </div>
 {% endblock %}

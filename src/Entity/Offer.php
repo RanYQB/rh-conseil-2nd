@@ -9,6 +9,8 @@ use App\Repository\OfferRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
 #[ApiResource(
@@ -21,6 +23,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
          normalizationContext: ['groups' => ['read:offers']]
      )]
 )]
+#[ApiFilter(SearchFilter::class, properties: ['title' => 'partial', 'city' => 'exact'])]
 class Offer
 {
     #[ORM\Id]

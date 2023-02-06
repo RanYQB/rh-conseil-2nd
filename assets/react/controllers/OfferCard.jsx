@@ -13,7 +13,7 @@ class OfferCard extends Component {
     render() {
         const { offer } = this.props;
         return (
-            <Box sx={{minWidth: 275, cursor: 'pointer'}} onClick={() => this.props.handleClick(offer)}>
+            <Box sx={{minWidth: 275, cursor: 'pointer', marginBottom: '1rem'}} onClick={() => this.props.handleClick(offer)}>
                 <Card variant="outlined">
                     <React.Fragment>
                         <CardContent>
