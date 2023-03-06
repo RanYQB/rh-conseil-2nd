@@ -14,7 +14,7 @@ import '@fontsource/roboto/700.css';
 
 // start the Stimulus application
 import './bootstrap';
-
+import './pictures/RH Conseil.png'
 import { registerReactControllerComponents } from '@symfony/ux-react';
 
 // Registers React controller components to allow loading them from Twig

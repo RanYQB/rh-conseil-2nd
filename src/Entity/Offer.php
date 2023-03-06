@@ -71,10 +71,12 @@ class Offer
 
     #[ORM\ManyToOne(inversedBy: 'offers')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['read:offer', 'read:offers'])]
     private ?City $city = null;
 
     #[ORM\ManyToOne(inversedBy: 'offers')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['read:offer', 'read:offers'])]
     private ?Recruiter $recruiter = null;
 
     public function getId(): ?int

@@ -11,12 +11,11 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import WorkIcon from '@mui/icons-material/Work';
 import { makeStyles } from 'tss-react/mui';
 import sizes from "./sizes";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme'
-
+import picture from '../../../public/build/images/RH Conseil.4e6a0d33.png'
 
 const useStyles = makeStyles()(() => {
     return {
@@ -64,6 +63,9 @@ const useStyles = makeStyles()(() => {
             textDecoration: 'none',
             color: 'unset',
             fontWeight: '500'
+        },
+        homeNavLogo: {
+            maxHeight: '40px',
         }
     };
 });
@@ -95,7 +97,9 @@ function HomeNav(props) {
         <AppBar position="static" className={classes.homeNav}>
             <Container maxWidth="xl" className={classes.homeNavContainer}>
                 <Toolbar disableGutters className={classes.homeNavToolbar}>
-                     <WorkIcon sx={{ display: { xs: 'none', md: 'flex', color: '#1abc9c' }, mr: 1 }} />
+                    <a href={'#'}>
+                        <img className={classes.homeNavLogo} src={picture} alt='rh conseil'/>
+                    </a>
                     <Box className={classes.homeNavBox} sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"

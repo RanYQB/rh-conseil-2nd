@@ -29,14 +29,14 @@ class City
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups('read')]
+    #[Groups(['read','read:offer', 'read:offers'])]
     private ?int $id = null;
 
-    #[Groups('read')]
+    #[Groups(['read','read:offer', 'read:offers'])]
     #[ORM\Column(length: 200)]
     private ?string $name = null;
 
-    #[Groups('read')]
+    #[Groups(['read','read:offer', 'read:offers'])]
     #[ORM\Column(length: 100)]
     private ?string $zipcode = null;
 
