@@ -8,24 +8,44 @@ import { ThemeProvider } from '@mui/material/styles';
 import { makeStyles } from 'tss-react/mui';
 import HomeContent from "./HomeContent";
 import axios from "axios";
+import AutoComplete from './AutoComplete'
 
 
 const useStyles = makeStyles()(() => {
     return {
         root: {
-            width: '80%'
-        }
-
+            width: '100%',
+            maxWidth: '1200px',
+            margin: 'auto',
+            padding: '1.5rem'
+        },
+        formPaper: {
+            width: 'initial',
+            marginBottom: '2rem',
+            padding: '1.5rem',
+        },
+        formContent: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            width: 'inherit'
+        },
+        formButton: {
+            width: '10%'
+        },
+        formKeywordInput: {
+            width: '42%',
+        },
     }
 });
 
 
 function HomeForm () {
-    const { classes } = useStyles()
-    const [ keyword , setKeyword ] = useState('')
-    const [ loading, setLoading ] = useState(true);
-    const [ offers, setOffers ] = useState([]);
-    const [ selected , setSelected ] = useState('');
+    const {classes} = useStyles()
+    const [keyword, setKeyword] = useState('')
+    const [loading, setLoading] = useState(true);
+    const [offers, setOffers] = useState([]);
+    const [selected, setSelected] = useState('');
 
     useEffect(() => {
         axios.get('/api/offers')
@@ -66,22 +86,25 @@ function HomeForm () {
     }
 
     const handleClick = (offer) => {
-        setSelected( offer )
+        setSelected(offer)
     }
 
     return (
         <ThemeProvider theme={theme}>
-            <div style={{position: 'relative', top: '65px'}}>
-            <Paper variant="outlined" className={classes.root} >
-                <form onSubmit={handleSubmit}>
-                    <TextField id="outlined-basic" value={keyword} name='keyword' onChange={handleChange} label="Outlined" variant="outlined" size='small' color='success'/>
-                    <Button type='submit' variant='contained' color='success'>Rechercher</Button>
-                </form>
-            </Paper>
-            <HomeContent offers={offers} selected={selected} handleClick={handleClick}/>
+            <div style={{position: 'relative', top: '65px'}} className={classes.root}>
+                <Paper variant="outlined" className={classes.formPaper}>
+                    <form onSubmit={handleSubmit} className={classes.formContent}>
+                        <TextField id="outlined-basic" value={keyword} name='keyword'
+                                   className={classes.formKeywordInput} onChange={handleChange} label="Métier"
+                                   variant="outlined" size='small' color='success'/>
+                        <AutoComplete/>
+                        <Button type='submit' variant='contained' color='success' size="small"
+                                className={classes.formButton}>Rechercher</Button>
+                    </form>
+                </Paper>
+                <HomeContent offers={offers} selected={selected} handleClick={handleClick}/>
             </div>
-        </ThemeProvider>
+            } </ThemeProvider>
     );
 }
-
 export default HomeForm;

@@ -12,8 +12,7 @@ const useStyles = makeStyles()(() => {
     return {
 
         offerDetail: {
-            width: '45%',
-            padding: '.8rem'
+            width: '49%',
         },
 
     };

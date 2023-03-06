@@ -23,7 +23,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     order: ['population' => 'DESC'],
     paginationEnabled: false)]
 #[ApiFilter(OrderFilter::class, properties: ['population' => 'DESC'])]
-#[ApiFilter(SearchFilter::class, properties: ['label' => 'start'])]
+#[ApiFilter(SearchFilter::class, properties: ['name' => 'start'])]
 class City
 {
     #[ORM\Id]

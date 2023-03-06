@@ -7,16 +7,15 @@ import { makeStyles } from 'tss-react/mui';
 const useStyles = makeStyles()(() => {
     return {
         root: {
-            width: '80%',
+            width: '100%',
             margin: 'auto',
-            padding: '2rem',
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'center'
+            justifyContent: 'space-between'
         },
         offersList: {
-            width: '45%',
-            padding: '.8rem'
+            width: '49%',
+
         },
 
     };
@@ -29,7 +28,7 @@ function OffersList (props) {
     return (
         <div className={classes.root}>
             <div className={classes.offersList}>
-                { offers.map( o => ( <OfferCard handleClick={props.handleClick} key={o.id} offer={o}/>))}
+                { offers.map( o => ( <OfferCard handleClick={props.handleClick} selected={selected.id} key={o.id} offer={o}/>))}
             </div>
             <OfferDetails offer={ selected } className={ classes.offerDetail} />
         </div>

@@ -26,6 +26,7 @@ const useStyles = makeStyles()(() => {
             backgroundColor: 'rgba(31, 41, 55, 1)',
             height: '64px',
             width: '100%',
+            maxWidth: '1500px',
             '& .MuiToolbar-root.MuiToolbar-regular': {
                 minHeight: '64px'
             },
@@ -189,10 +190,10 @@ function HomeNav(props) {
                             <div>
                                 <div style={{display: 'flex'}}>
                                     <MenuItem key='connexion' >
-                                    <Button onClick={handleOpenUserMenu} sx={{ borderRadius: '7px', textTransform: 'capitalize'}} color="success" variant="outlined">Créer un compte</Button>
+                                    <Button onClick={handleOpenUserMenu} sx={{ borderRadius: '8px', textTransform: 'capitalize'}} color="success" variant="outlined">Créer un compte</Button>
                                     </MenuItem>
                                 <MenuItem key='connexion' >
-                                    <Button variant="contained" color="success" sx={{ borderRadius: '7px', textTransform: 'capitalize'}}>Connexion</Button>
+                                    <Button variant="contained" color="success" sx={{ borderRadius: '8px', textTransform: 'capitalize'}}>Connexion</Button>
                                 </MenuItem>
                                 </div>
                                 <Menu
