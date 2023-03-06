@@ -3,18 +3,20 @@
 namespace App\DataFixtures;
 use App\Entity\Offer;
 use App\Repository\CityRepository;
+use App\Repository\RecruiterRepository;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class OfferFixtures extends Fixture
+class OfferFixtures extends Fixture implements DependentFixtureInterface
 {
-
 
     public function __construct(
         private CityRepository $cityRepository,
+        private RecruiterRepository $recruiterRepository,
         private SluggerInterface $slugger
     ){}
 
@@ -26,6 +28,9 @@ class OfferFixtures extends Fixture
 
         for($i = 1; $i <= 50; $i++){
             $offer = new Offer();
+            $recruiters = $this->recruiterRepository->findAll();
+            $recruiter = array_rand($recruiters);
+            $offer->setRecruiter($recruiters[$recruiter]);
             $titles = ['Assistant comptable', 'Agent d\'accueil', 'Architecte', 'Assistant juridique', 'Assistant commercial',
                 'Aide à domicile', 'Ambulancier', 'Boulanger', 'Cariste', 'Comptable', 'Conducteur de bus', 'Cuisinier', 'Développeur web',
                 'Electricien', 'Infirmier', 'Magasinier', 'Gestionnaire paie', 'Serveur', 'Vendeur'];
@@ -56,5 +61,12 @@ class OfferFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            RecruiterFixtures::class
+        ];
     }
 }

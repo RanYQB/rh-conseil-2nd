@@ -73,6 +73,10 @@ class Offer
     #[ORM\JoinColumn(nullable: false)]
     private ?City $city = null;
 
+    #[ORM\ManyToOne(inversedBy: 'offers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Recruiter $recruiter = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -212,6 +216,18 @@ class Offer
     public function setCity(?City $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getRecruiter(): ?Recruiter
+    {
+        return $this->recruiter;
+    }
+
+    public function setRecruiter(?Recruiter $recruiter): self
+    {
+        $this->recruiter = $recruiter;
 
         return $this;
     }
