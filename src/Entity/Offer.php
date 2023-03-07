@@ -23,7 +23,7 @@ use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
          normalizationContext: ['groups' => ['read:offers']]
      )]
 )]
-#[ApiFilter(SearchFilter::class, properties: ['title' => 'partial', 'city' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['title' => 'partial', 'city.id' => 'exact'])]
 class Offer
 {
     #[ORM\Id]

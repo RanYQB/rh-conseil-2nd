@@ -78,7 +78,7 @@ class CreateFromXmlCommand extends Command
                 $citiesCreated = 0;
                 foreach($this->getDataFromFile() as $row)
                 {
-                    if( !empty($row["column"][2]["#"])){
+                    if( !empty($row["column"][2]["#"]) && $row["column"][14]["#"] >= 1000){
                         $city = $this->cityRepository->findOneBy([
                             'label' => $row["column"][2]["#"]
                         ]);

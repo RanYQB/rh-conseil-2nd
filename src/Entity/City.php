@@ -18,12 +18,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [
         new Get(),
-        new GetCollection()],
+        new GetCollection(
+
+        )],
     normalizationContext: ['groups' => ['read']],
     order: ['population' => 'DESC'],
     paginationEnabled: false)]
 #[ApiFilter(OrderFilter::class, properties: ['population' => 'DESC'])]
-#[ApiFilter(SearchFilter::class, properties: ['name' => 'start'])]
+#[ApiFilter(SearchFilter::class, properties: ['name' => 'word_start'])]
 class City
 {
     #[ORM\Id]
@@ -56,7 +58,7 @@ class City
 
 
     #[ORM\Column(length: 2)]
-    #[Groups('read')]
+    #[Groups(['read','read:offer', 'read:offers'])]
     private ?string $departmentNumber = null;
 
     #[ORM\Column(length: 10)]

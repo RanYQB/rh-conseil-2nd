@@ -23,7 +23,7 @@ class RecruiterFixtures extends Fixture
     {
         $faker = Faker\Factory::create('fr_FR');
 
-        for($i = 1; $i <= 40; $i++){
+        for($i = 1; $i <= 60; $i++){
             $user = new User();
             $user->setEmail($faker->email());
             $user->setRoles(['ROLE_RECRUITER']);

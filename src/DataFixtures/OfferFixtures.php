@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 use App\Entity\Offer;
-use App\Repository\CityRepository;
 use App\Repository\RecruiterRepository;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -15,7 +14,6 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
 {
 
     public function __construct(
-        private CityRepository $cityRepository,
         private RecruiterRepository $recruiterRepository,
         private SluggerInterface $slugger
     ){}
@@ -24,9 +22,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Faker\Factory::create('fr_FR');
 
-        $cities = $this->cityRepository->showBigCities();
 
-        for($i = 1; $i <= 50; $i++){
+        for($i = 1; $i <= 500; $i++){
             $offer = new Offer();
             $recruiters = $this->recruiterRepository->findAll();
             $recruiter = array_rand($recruiters);
@@ -43,9 +40,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
             } else {
                 $offer->setContractType('CDI');
             }
-            $cities = $this->cityRepository->findAll();
-            $city = array_rand($cities);
-            $offer->setCity($cities[$city]);
+            $city = $this->recruiterRepository->find($recruiters[$recruiter])->getCity();
+            $offer->setCity($city);
             $offer->setClosed(false);
             $offer->setPositions(rand(1, 3));
             $offer->setSlug($this->slugger->slug($offer->getTitle())->lower());
