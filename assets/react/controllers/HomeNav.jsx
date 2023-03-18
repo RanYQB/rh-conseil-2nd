@@ -76,7 +76,7 @@ function HomeNav(props) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const { classes } = useStyles();
-    const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+    const settings = ['Profile', 'Account', 'Dashboard'];
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -183,21 +183,19 @@ function HomeNav(props) {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
+                            <MenuItem key='logout' onClick={handleCloseUserMenu}>
+                                <a href={props.logout}><Typography textAlign="center">Logout</Typography></a>
+                            </MenuItem>
                         </Menu>
                         </div>
                             :
                             <div>
                                 <div style={{display: 'flex'}}>
-                                    <MenuItem key='connexion' >
+                                    <MenuItem key='register' >
                                     <Button onClick={handleOpenUserMenu} sx={{ borderRadius: '8px', textTransform: 'capitalize'}} color="success" variant="outlined">Créer un compte</Button>
                                     </MenuItem>
                                 <MenuItem key='connexion' >
-                                    <Button variant="contained" color="success" sx={{ borderRadius: '8px', textTransform: 'capitalize'}}>Connexion</Button>
+                                    <a href={props.loginLink}><Button variant="contained" color="success" sx={{ borderRadius: '8px', textTransform: 'capitalize'}}>Connexion</Button></a>
                                 </MenuItem>
                                 </div>
                                 <Menu
@@ -216,11 +214,13 @@ function HomeNav(props) {
                                     open={Boolean(anchorElUser)}
                                     onClose={handleCloseUserMenu}
                                 >
-                                    {settings.map((setting) => (
-                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                            <Typography textAlign="center">{setting}</Typography>
-                                        </MenuItem>
-                                    ))}
+
+                                    <MenuItem key='candidate-register' onClick={handleCloseUserMenu}>
+                                        <a href={props.registerCandidate}><Typography textAlign="center">Candidat</Typography></a>
+                                    </MenuItem>
+                                    <MenuItem key='recruiter-register' onClick={handleCloseUserMenu}>
+                                        <a href={props.registerRecruiter}><Typography textAlign="center">Employeur</Typography></a>
+                                    </MenuItem>
                                 </Menu>
                             </div>
                         }

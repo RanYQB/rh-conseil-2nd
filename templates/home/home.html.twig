@@ -1,12 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Emploi | RH Conseil{% endblock %}
 
 {% block body %}
 
 
 <div class="">
-    <div {{ react_component('HomeNav', { 'user' : app.user }) }}></div>
+    <div {{ react_component('HomeNav', {
+        'user' : app.user,
+        'loginLink' : path('app_login'),
+        'logout' : path('app_logout'),
+        'registerCandidate' : path('app_register_candidate'),
+        'registerRecruiter' : path('app_register_recruiter')
+    }) }}></div>
     <div {{ react_component('HomeForm', {}) }}></div>
 </div>
 {% endblock %}
