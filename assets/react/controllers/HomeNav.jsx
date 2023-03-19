@@ -20,7 +20,8 @@ import picture from '../../../public/build/images/RH Conseil.4e6a0d33.png'
 const useStyles = makeStyles()(() => {
     return {
         homeNav: {
-            position: 'fixed',
+            position: 'absolute',
+            top: 0,
             zIndex: '10',
             backgroundColor: 'rgba(31, 41, 55, 1)',
             height: '64px',

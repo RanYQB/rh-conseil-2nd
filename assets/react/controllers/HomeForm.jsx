@@ -41,8 +41,8 @@ const useStyles = makeStyles()(() => {
 
 
 function HomeForm () {
-    const {classes} = useStyles()
-    const [keyword, setKeyword] = useState('')
+    const {classes} = useStyles();
+    const [keyword, setKeyword] = useState('');
     const [loading, setLoading] = useState(true);
     const [offers, setOffers] = useState([]);
     const [selected, setSelected] = useState('');
